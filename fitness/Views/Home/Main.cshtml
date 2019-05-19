@@ -1,7 +1,10 @@
 @using fitness.Models
 @{
     ViewBag.Title = "title";
-    string user = ViewBag.User;
+    string s = ViewBag.S;
 }
-@user
-<h2>title</h2>
+@s
+<form action="/Home/Code" method="post">
+    <label>Sub code:</label><input type="text" name="code"/>
+    <input type="submit" value="Ok"/>
+</form>
