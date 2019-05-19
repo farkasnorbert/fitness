@@ -1,0 +1,13 @@
+@{
+    ViewBag.Title = "Login Page";
+    var msg = ViewBag.Message;
+}
+@msg
+<form action="/Login/Login" method="post">
+    <input type="text" name="name" />
+    <input type="password" name="password" />
+    <input type="submit" value="Login" />
+</form>
+<form action="/Login/Registerv">
+    <input type="submit" value="Register"/>
+</form>
