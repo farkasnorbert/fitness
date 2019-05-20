@@ -86,13 +86,24 @@ namespace fitness.Controllers
 
         public ActionResult Update(string name,DateTime exp,int maxnumberofentrence,int code)
         {
-            
+            Client = new FirebaseClient(Config);
+            Subscription subscription = new Subscription();
+            subscription.name = name;
+            subscription.exp = exp;
+            subscription.maxnumberofentrence = maxnumberofentrence;
+            subscription.code = code;
+            subscription.numberofentrence = 0;
+            var response = Client.Update("subscription/"+code,subscription);
             return View("Index");
         }
 
         public ActionResult Enter(int code)
         {
-            
+            Client = new FirebaseClient(Config);
+            var response = Client.Get("subscription/" + code);
+            var subscription = response.ResultAs<Subscription>();
+            subscription.numberofentrence++;
+            var response2 = Client.Update("subscription/"+code,subscription);
             return View("Index");
         }
     }

@@ -3,8 +3,8 @@
     ViewBag.Title = "title";
     Subscription subscription = ViewBag.Subscription;
 }
-
-<form action="Home/Update" method="post">
+@subscription.code
+<form action="/Home/Update" method="post">
     <label>Name:</label><input type="text" name="name" value=@subscription.name/><br/>
     @{
         if (subscription.exp != DateTime.MinValue)
@@ -17,6 +17,10 @@
                 }
             <br/>
         }
+        else
+        {
+            <input type="hidden" name="exp" value="@subscription.exp.ToString("yyyy-MM-dd")"/>
+        }
     }
     @{
         if (subscription.maxnumberofentrence != -1)
@@ -27,13 +31,17 @@
             {
                 <b>No more entery</b>
             }
+            else
+            {
+                <input type="hidden" name="maxnumberofentrence" value=@subscription.maxnumberofentrence/>
+            }
             <br/>
         }
     }
     <label>Code:</label><input type="number" readonly="true" value=@subscription.code name="code"/><br/>
     <input type="submit" value="Update">
 </form>
-<form action="Home/Enter" method="post">
-    <input type="hidden" name="code" value=@subscription.code/>
+<form action="/Home/Enter" method="post">
+    <input type="hidden" disabled="false" name="code" value=@subscription.code/>
     <input type="submit" value="Enter"/>
 </form>
