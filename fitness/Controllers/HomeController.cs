@@ -46,7 +46,7 @@ namespace fitness.Controllers
                 return View("Index");
         }
 
-        public ActionResult NewS(string name, DateTime exp, int numberofentrence)
+        public ActionResult NewS(string name, DateTime exp, int numberofentrence, string email, string phone, string adres)
         {
             ViewBag.Name = name;
             ViewBag.Exp = exp;
@@ -59,7 +59,9 @@ namespace fitness.Controllers
 
             var subscription = new Subscription();
             subscription.name = name;
-
+            subscription.email = email;
+            subscription.phone = phone;
+            subscription.addres = adres;
             if (exp != DateTime.Now) subscription.exp = exp;
             else
             {
@@ -89,7 +91,7 @@ namespace fitness.Controllers
             return View("Index");
         }
 
-        public ActionResult Update(string name,DateTime exp,int maxnumberofentrence,int code)
+        public ActionResult Update(string name,DateTime exp,int maxnumberofentrence,int code,string email, string phone, string adres)
         {
             Client = new FirebaseClient(Config);
             Subscription subscription = new Subscription();
@@ -98,6 +100,10 @@ namespace fitness.Controllers
             subscription.maxnumberofentrence = maxnumberofentrence;
             subscription.code = code;
             subscription.numberofentrence = 0;
+            subscription.deleted = 0;
+            subscription.email = email;
+            subscription.phone = phone;
+            subscription.addres = adres;
             var response = Client.Update("subscription/"+code,subscription);
             return View("Index");
         }
@@ -127,7 +133,7 @@ namespace fitness.Controllers
             var response = Client.Get("subscription/" + code);
             var subscription = response.ResultAs<Subscription>();
             subscription.deleted = 1;
-            var response2 = Client.Set("subscription/" + code,subscription);
+            var response2 = Client.Update("subscription/" + code,subscription);
             return View("Index");
         }
     }

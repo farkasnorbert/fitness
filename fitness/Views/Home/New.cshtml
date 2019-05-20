@@ -2,8 +2,11 @@
     ViewBag.Title = "title";
 }
 <form action="/Home/NewS" method="post">
-    <label>Name:</label><input type="text" name="name"/><br/>
-    <label>Expiration date:</label><input type="date" name="exp" value="@DateTime.Now.ToString("yyyy-MM-dd")"/><br/>
-    <label>Number of entrence:</label><input type="number" name="numberofentrence" value="-1"/><br/>
-    <input type="submit" value="Ok"/>
+    <label>Name:</label><input type="text" name="name" /><br />
+    <label>Expiration date:</label><input type="date" name="exp" value="@DateTime.Now.ToString("yyyy-MM-dd")" /><br />
+    <label>Number of entrence:</label><input type="number" name="numberofentrence" value="-1" /><br />
+    <label>Email</label><input type="email" name="email" /><br />
+    <label>Phone</label><input type="text" name="phone" /><br />
+    <label>Adres</label><input type="adres" name="adres" /><br />
+    <input type="submit" value="Ok" />
 </form>

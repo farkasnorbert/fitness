@@ -9,6 +9,9 @@
         <th>Name</th>
         <th>Num</th>
         <th>Expiration</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Addres</th>
     </tr>
     @foreach (Subscription s in subscriptions)
     {
@@ -19,6 +22,9 @@
                 <th>@s.name</th>
                 <th>@s.numberofentrence</th>
                 <th>@s.exp</th>
+                <th>@s.email</th>
+                <th>@s.phone</th>
+                <th>@s.addres</th>
                 <th>
                     <form action="/Home/Delete" method="post">
                         <input type="number" hidden="true" name="code" value="@s.code"/>

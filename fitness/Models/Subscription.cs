@@ -10,5 +10,8 @@ namespace fitness.Models
         public DateTime exp { get; set; }
         public int numberofentrence { get; set; }
         public int maxnumberofentrence { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string addres { get; set; }
     }
 }
