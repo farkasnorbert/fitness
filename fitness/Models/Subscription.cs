@@ -4,6 +4,7 @@ namespace fitness.Models
 {
     public class Subscription
     {
+        public int deleted { get; set; }
         public int code { get; set; }
         public string name { get; set; }
         public DateTime exp { get; set; }

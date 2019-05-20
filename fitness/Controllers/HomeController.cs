@@ -36,8 +36,11 @@ namespace fitness.Controllers
             if (response.Body != "null")
             {
                 var subscription = response.ResultAs<Subscription>();
-                ViewBag.Subscription = subscription;
-                return View();
+                if (subscription.deleted == 0)
+                {
+                    ViewBag.Subscription = subscription;
+                    return View();
+                }
             }
             ViewBag.Message = "Wrong code";
                 return View("Index");
@@ -68,6 +71,8 @@ namespace fitness.Controllers
             {
                 subscription.numberofentrence = -1;
             }
+
+            subscription.deleted = 0;
             Client = new FirebaseClient(Config);
             var response = Client.Get("subscription");
             if (response.Body != "null")
@@ -114,6 +119,16 @@ namespace fitness.Controllers
             List<Subscription> subscriptions = response.ResultAs<List<Subscription>>();
             ViewBag.Subscriptions = subscriptions;
             return View();
+        }
+
+        public ActionResult Delete(int code)
+        {
+            Client = new FirebaseClient(Config);
+            var response = Client.Get("subscription/" + code);
+            var subscription = response.ResultAs<Subscription>();
+            subscription.deleted = 1;
+            var response2 = Client.Set("subscription/" + code,subscription);
+            return View("Index");
         }
     }
 }

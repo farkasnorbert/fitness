@@ -5,19 +5,26 @@
 }
 <table class="table">
     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Num</th>
+        <th>Expiration</th>
     </tr>
     @foreach (Subscription s in subscriptions)
     {
-        <tr>
-            <th>@s.code</th>
-            <th>@s.name</th>
-            <th>@s.numberofentrence</th>
-            <th>@s.exp</th>
-            <th><form action="/Home/Delete" method="post"><input type="submit" value="Delete"/></form></th>
-        </tr>
+        if (s.deleted != 1)
+        {
+            <tr>
+                <th>@s.code</th>
+                <th>@s.name</th>
+                <th>@s.numberofentrence</th>
+                <th>@s.exp</th>
+                <th>
+                    <form action="/Home/Delete" method="post">
+                        <input type="number" hidden="true" name="code" value="@s.code"/>
+                        <input type="submit" value="Delete"/>
+                    </form></th>
+            </tr>
+        }
     }
 </table>
