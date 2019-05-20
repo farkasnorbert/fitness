@@ -58,8 +58,16 @@ namespace fitness.Controllers
             subscription.name = name;
 
             if (exp != DateTime.Now) subscription.exp = exp;
+            else
+            {
+                subscription.exp = DateTime.MinValue;
+            }
 
             if (numberofentrence > 0) subscription.numberofentrence = numberofentrence;
+            else
+            {
+                subscription.numberofentrence = -1;
+            }
             Client = new FirebaseClient(Config);
             var response = Client.Get("subscription");
             if (response.Body != "null")
@@ -73,6 +81,18 @@ namespace fitness.Controllers
                 var response2 = Client.Set("subscription/" + "0", subscription);
             }
 
+            return View("Index");
+        }
+
+        public ActionResult Update(string name,DateTime exp,int maxnumberofentrence,int code)
+        {
+            
+            return View("Index");
+        }
+
+        public ActionResult Enter(int code)
+        {
+            
             return View("Index");
         }
     }
