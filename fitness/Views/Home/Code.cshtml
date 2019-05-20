@@ -3,45 +3,30 @@
     ViewBag.Title = "title";
     Subscription subscription = ViewBag.Subscription;
 }
-@subscription.code
 <form action="/Home/Update" method="post">
-    <label>Name:</label><input type="text" name="name" value=@subscription.name/><br/>
+    <label>Name:</label><input type="text" name="name" value="@subscription.name"/><br/>
+    <label>Expiration date:</label>
+    <input type="date" name="exp" value="@subscription.exp.ToString("yyyy-MM-dd")"/>
     @{
-        if (subscription.exp != DateTime.MinValue)
+        if (subscription.exp < DateTime.Now)
         {
-            <label>Expiration date:</label>
-            <input type="date" name="exp" value="@subscription.exp.ToString("yyyy-MM-dd")"/>
-            if (subscription.exp < DateTime.Now)
-                {
-                <b> Expiered </b>
-                }
-            <br/>
-        }
-        else
-        {
-            <input type="hidden" name="exp" value="@subscription.exp.ToString("yyyy-MM-dd")"/>
+            <b> Expiered </b>
         }
     }
+    <br/>
+    <label>maxnumberofentrence:</label>
+    <input type="number" name="maxnumberofentrence" value="@subscription.maxnumberofentrence"/>
     @{
-        if (subscription.maxnumberofentrence != -1)
+        if (subscription.numberofentrence == subscription.maxnumberofentrence)
         {
-            <label>maxnumberofentrence:</label>
-            <input type="number" name="maxnumberofentrence" value=@subscription.maxnumberofentrence />
-            if (subscription.numberofentrence == subscription.maxnumberofentrence)
-            {
-                <b>No more entery</b>
-            }
-            else
-            {
-                <input type="hidden" name="maxnumberofentrence" value=@subscription.maxnumberofentrence/>
-            }
-            <br/>
+            <b>No more entery</b>
         }
     }
-    <label>Code:</label><input type="number" readonly="true" value=@subscription.code name="code"/><br/>
+    <br/>
+    <label>Code:</label><input type="number" readonly="true" value="@subscription.code" name="code"/><br/>
     <input type="submit" value="Update">
 </form>
 <form action="/Home/Enter" method="post">
-    <input type="hidden" disabled="false" name="code" value=@subscription.code/>
+    <input type="number" hidden="true" name="code" value="@subscription.code"/>
     <input type="submit" value="Enter"/>
 </form>

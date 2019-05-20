@@ -1,0 +1,23 @@
+@using fitness.Models
+@{
+    ViewBag.Title = "title";
+    List<Subscription> subscriptions = ViewBag.Subscriptions;
+}
+<table class="table">
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (Subscription s in subscriptions)
+    {
+        <tr>
+            <th>@s.code</th>
+            <th>@s.name</th>
+            <th>@s.numberofentrence</th>
+            <th>@s.exp</th>
+            <th><form action="/Home/Delete" method="post"><input type="submit" value="Delete"/></form></th>
+        </tr>
+    }
+</table>

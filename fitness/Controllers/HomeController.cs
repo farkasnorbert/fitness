@@ -106,5 +106,14 @@ namespace fitness.Controllers
             var response2 = Client.Update("subscription/"+code,subscription);
             return View("Index");
         }
+
+        public ActionResult List()
+        {
+            Client = new FirebaseClient(Config);
+            var response = Client.Get("subscription/");
+            List<Subscription> subscriptions = response.ResultAs<List<Subscription>>();
+            ViewBag.Subscriptions = subscriptions;
+            return View();
+        }
     }
 }

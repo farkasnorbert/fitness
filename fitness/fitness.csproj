@@ -164,6 +164,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Home\Code.cshtml" />
+    <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\New.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
