@@ -10,8 +10,9 @@
 <body>
 @{
     string name = Request.Cookies["user"]?.Value;
+    string c=this.ViewContext.RouteData.Values["controller"].ToString();
 }
-@if (!string.IsNullOrEmpty(name))
+@if (c!="Login")
 {
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">

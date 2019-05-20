@@ -21,7 +21,7 @@ namespace fitness.Controllers
         // GET
         public ActionResult Index()
         {
-            var u = new HttpCookie("user") {["user"] = ""};
+            var u = new HttpCookie("user") {["user"] = "no"};
             u.Expires.Add(new TimeSpan(1, 0, 0));
             Response.Cookies.Add(u);
             return View();

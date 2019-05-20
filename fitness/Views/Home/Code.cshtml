@@ -3,3 +3,8 @@
     ViewBag.Title = "title";
     Subscription subscription = ViewBag.Subscription;
 }
+<form action="Home/Update">
+    <input type="text" name="name" value=@subscription.name/>
+    <input type="date" name="exp" value=@subscription.exp/>
+    <input type="number" name="maxnumberofentrence" value=@subscription.maxnumberofentrence/>
+</form>
